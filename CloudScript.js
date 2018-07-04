@@ -368,6 +368,41 @@ handlers.addMoney = function(args, context) {
    log.debug("Coin :"+args.amount+" Added");
 };
 
+handlers.checkSaleReporter = function(args,context)
+{
+	var saleList = args.SaleList;
+  var totalMoney = 0;
+    //var saleList =  ['2|20|7/3/2018 03:03:00 PM', '2|20|7/3/2018 03:03:00 PM'];
+  log.debug(saleList);	
+  for (var i = 0; i < saleList.length; i++)
+    {
+      
+      log.debug(saleList[i]);
+	  var arr = saleList[i].split("|");
+      //log.debug("0:"+arr[0]);	
+      //log.debug("1:"+arr[1]);	
+    
+      totalMoney += parseInt(arr[1], 10);
+      
+      //log.debug("2:"+arr[2]);	
+    }
+      
+  log.debug("Total Money:" + totalMoney);
+  
+    //do some check
+  
+  
+  
+  var result = server.AddUserVirtualCurrency({
+  	
+    PlayFabId:currentPlayerId,
+    VirtualCurrency: "CO",
+    Amount:totalMoney
+  });
+  
+}
+
+
 //=========================================================================
 //setup the starter lay out and set level to 1
 handlers.generateStartingResources = function(args)
