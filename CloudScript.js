@@ -342,6 +342,17 @@ handlers.deleteShared = function(args,context)
     );
 };
 
+//delete shared group
+handlers.createShared = function(args,context)
+{
+	var result =  server.CreateSharedGroup(
+      {
+      		SharedGroupId: currentPlayerId
+      }    
+    );
+};
+
+
 //add money to player
 handlers.addMoney = function(args, context) {
     // The server API can add virtual currency safely
