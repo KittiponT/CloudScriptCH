@@ -337,7 +337,7 @@ handlers.deleteShared = function(args,context)
 {
 	var result =  server.DeleteSharedGroup(
       {
-      		SharedGroupId: args.GroupID
+      		SharedGroupId: currentPlayerId
       }    
     );
 };
