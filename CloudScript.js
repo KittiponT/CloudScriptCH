@@ -350,6 +350,10 @@ handlers.createShared = function(args,context)
       		SharedGroupId: currentPlayerId
       }    
     );
+	var resultAddMember = server.AddSharedGroupMembers({
+	PlayFabIds : currentPlayerId,
+	SharedGroupId :currentPlayerId	
+	});
 };
 
 
