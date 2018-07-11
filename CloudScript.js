@@ -426,8 +426,8 @@ handlers.generateStartingResources = function(args)
   //COOKING STATION(ID=1) x2
   //TABLE(ID=2)x4
     var furLayout = "4,8,0,3,3,1|4,8,1,0,2,1|4,8,6,0,2,1|1,7,3,0,2,1|1,6,9,0,2,1|1,4,5,3,1,1|1,4,5,6,1,1|1,4,0,4,0,1|1,4,9,3,3,1|1,4,9,7,0,1|1,2,11,11,2,1|1,2,11,9,2,1|2,3,4,3,2,1|2,3,4,6,2,1|2,3,9,6,2,1|2,3,10,3,2,1";
-    var sizeX = "12";
-  	var sizeY = "12";
+    var sizeX = "8";
+  	var sizeY = "8";
   
     var updateUserDataResult = server.UpdateUserData({
         PlayFabId: currentPlayerId,
