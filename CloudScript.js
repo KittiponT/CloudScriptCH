@@ -403,6 +403,8 @@ handlers.checkSaleReporter = function(args,context)
 			value: arr[2]
 			});
 		 }
+		   log.debug("dictLevel Key:" + arr[1] + "dictLevel Value" + arr[2]);
+		 
 			})
 			////////////////////////////////////////////////
 			
@@ -420,14 +422,14 @@ handlers.checkSaleReporter = function(args,context)
 			value: arr[3]
 			});
 		 }
+		  log.debug("dictExp Key:" + arr[1] + "dictExp Value" + arr[3]);
 			})
 		  //}
 	  }
     }
       
   log.debug("Total Money:" + totalMoney);
-  log.debug("dictExp:" + dictExp);
-  log.debug("dictLevel:" + dictLevel);
+
     //do some check
   
   
