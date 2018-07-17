@@ -517,6 +517,7 @@ handlers.LevelUp = function (args,context)
 		};
 		var playerStatResult = server.UpdatePlayerStatistics(request);
 	}
+	return {CurrentLevel:curLevel}
 }
 
 // Below are some examples of using Cloud Script in slightly more realistic scenarios
