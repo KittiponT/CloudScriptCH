@@ -372,19 +372,11 @@ handlers.checkSaleReporter = function(args,context)
 {
 	var saleList = args.SaleList;
   var totalMoney = 0;
-    //var saleList =  ['2|20|7/3/2018 03:03:00 PM', '2|20|7/3/2018 03:03:00 PM'];
-  log.debug(saleList);	
   for (var i = 0; i < saleList.length; i++)
     {
-      
-      log.debug(saleList[i]);
 	  var arr = saleList[i].split("|");
-      //log.debug("0:"+arr[0]);	
-      //log.debug("1:"+arr[1]);	
-    
       totalMoney += parseInt(arr[1], 10);
       
-      //log.debug("2:"+arr[2]);	
     }
       
   log.debug("Total Money:" + totalMoney);
@@ -493,6 +485,37 @@ handlers.handlePlayStreamEventAndProfile = function (args, context) {
     return { externalAPIResponse: response };
 };
 
+handlers.LevelUp = function (args,context)
+{
+	 var key =  ["Level"];
+
+	 var playerStats = server.GetPlayerStatistics({
+        PlayFabId: currentPlayerId
+    }).Statistics;
+	
+    var movesMade = 0;
+	var curLevel;
+    for (var i = 0; i < playerStats.length; i++)
+	{
+		 if (playerStats[i].StatisticName === "Level")
+		 {
+			curLevel = playerStats[i].Value;
+		 }
+	}
+   curLevel += 1;
+	
+	
+	//var level = args.levelInput;
+	
+	var request = {
+        PlayFabId: currentPlayerId, Statistics: [{
+                StatisticName: "Level",
+                Value: curLevel
+            }]
+    };
+    var playerStatResult = server.UpdatePlayerStatistics(request);
+	
+}
 
 // Below are some examples of using Cloud Script in slightly more realistic scenarios
 
