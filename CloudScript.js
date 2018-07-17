@@ -372,8 +372,8 @@ handlers.checkSaleReporter = function(args,context)
 {
    var saleList = args.SaleList;
    var totalMoney = 0;
-   var dictLevel = []; // create an empty array
-   var dictExp = [];
+   var dictLevel = {}; // create an empty array
+   var dictExp = {};
 		
   
   for (var i = 0; i < saleList.length; i++)
@@ -386,46 +386,35 @@ handlers.checkSaleReporter = function(args,context)
 	   }
 	   else if(arr[0] == 'c')
 		{
-		  // //if(check for something)
-		  // //{
-			// ////////////////////////////////////////////////
-		 // dictLevel.forEach(function(element){
-		  // //found old element 
-		  // if(element['key'] == arr[1])
-		  // {
-			  // element['value'] += arr[2];
-		  // }
-		  // else 
-		  // {
-			  // //found new element
-			  // dictLevel.push({
-			 // key:   arr[1],
-			 // value: arr[2]
-			 // });
-		  // }
-		    // log.debug("dictLevel Key:" + arr[1] + "dictLevel Value" + arr[2]);
-		 
-		 // })
-			// ////////////////////////////////////////////////
 			
-		// dictExp.forEach(function(element){
-		 // //found old element 
-		 // if(element['key'] == arr[1])
-		 // {
-			 // element['value'] += arr[3];
-		 // }
-		 // else 
-		 // {
-			 // //found new element
-			 // dictExp.push({
-			// key:   arr[1],
-			// value: arr[3]
-			// });
-		 // }
-		  // log.debug("dictExp Key:" + arr[1] + "dictExp Value" + arr[3]);
-			// })
-		  //}
-		  log.debug("cookId:" + arr[1]+"lvlExp:" +arr[2]+"foodExp:" +arr[3]);
+			
+			var foodID = arr[1];
+			var lvlExp = arr[2];
+			var foodExp = arr[3];
+			
+			if(dictLevel.hasOwnProperty(foodID))
+			{
+				//found old element 
+				dictLevel[foodID] += lvlExp;
+			}
+			else
+			{
+				 //found new element
+				dictLevel[foodID] = lvlExp;
+			}
+			
+			if(dictExp.hasOwnProperty(foodID))
+			{
+				//found old element 
+				dictExp[foodID] += foodExp;
+			}
+			else
+			{
+				 //found new element
+				dictExp[foodID] = foodExp;
+			}
+		
+		  log.debug("cookId:" + foodID+"lvlExp:" +lvlExp+"foodExp:" +foodExp);
 		}
 		log.debug("Count:" + i);
     }
