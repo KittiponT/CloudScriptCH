@@ -370,13 +370,59 @@ handlers.addMoney = function(args, context) {
 
 handlers.checkSaleReporter = function(args,context)
 {
-	var saleList = args.SaleList;
-  var totalMoney = 0;
+   var saleList = args.SaleList;
+   var totalMoney = 0;
+   var dictLevel = []; // create an empty array
+   var dictExp = []
+		
+  
   for (var i = 0; i < saleList.length; i++)
     {
 	  var arr = saleList[i].split("|");
-      totalMoney += parseInt(arr[1], 10);
-      
+     
+      if(arr[0] == 's')
+	  {
+		   totalMoney += parseInt(arr[2], 10);
+	  }
+	  else if(arr[0] == 'c')
+	  {
+		  //if(check for something)
+		  //{
+			////////////////////////////////////////////////
+		dictLevel.forEach(function(element){
+		 //found old element 
+		 if(element['key'] == arr[1])
+		 {
+			 element['value'] += arr[2];
+		 }
+		 else 
+		 {
+			 //found new element
+			 dictLevel.push({
+			key:   arr[1],
+			value: arr[2]
+			});
+		 }
+			})
+			////////////////////////////////////////////////
+			
+		dictExp.forEach(function(element){
+		 //found old element 
+		 if(element['key'] == arr[1])
+		 {
+			 element['value'] += arr[3];
+		 }
+		 else 
+		 {
+			 //found new element
+			 dictExp.push({
+			key:   arr[1],
+			value: arr[3]
+			});
+		 }
+			})
+		  //}
+	  }
     }
       
   log.debug("Total Money:" + totalMoney);
@@ -384,14 +430,50 @@ handlers.checkSaleReporter = function(args,context)
     //do some check
   
   
-  
+  if(totalMoney > 0)
+  {
   var result = server.AddUserVirtualCurrency({
   	
     PlayFabId:currentPlayerId,
     VirtualCurrency: "CO",
     Amount:totalMoney
-  });
+  });   
+  }
   
+  
+  
+  //summery total gainExp
+  
+  
+  // if(dictLevel.length > 0)
+  // {
+	 // dictLevel.forEach(function(element){
+		 
+    // element['key'];
+	// element['value'];
+	
+	// })
+  // }
+  // if(dictExp.length > 0)
+  // {
+	 // dictExp.forEach(function(element){
+		 
+    // element['key'];
+	// element['value'];
+	
+	// })
+  // }
+  
+  //get exp from server
+  
+  // var updateUserDataResult = server.UpdateUserData({
+        // PlayFabId: currentPlayerId,
+        // Data: {
+            // FoodExp_1: ,
+            // level_Exp: ,
+        // },
+      // Permission: "Public"
+    // });
 }
 
 
