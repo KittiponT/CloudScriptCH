@@ -378,12 +378,12 @@ handlers.checkSaleReporter = function(args,context)
   
   for (var i = 0; i < saleList.length; i++)
     {
-	  // var arr = saleList[i].split("|");
+	   var arr = saleList[i].split("|");
      
-      // if(arr[0] == 's')
-	  // {
-		   // totalMoney += parseInt(arr[2], 10);
-	  // }
+       if(arr[0] == 's')
+	   {
+		    totalMoney += parseInt(arr[2], 10);
+	   }
 	  // else if(arr[0] == 'c')
 	  // {
 		  // //if(check for something)
