@@ -442,13 +442,13 @@ handlers.checkSaleReporter = function(args,context)
   
   
   
-  //summery total gainExp
+  // summery total gainExp
   
   
   // if(dictLevel.length > 0)
   // {
-	 // dictLevel.forEach(function(element){
-		 
+	 // dictLevel.foreach(function(element){
+		 // // get exp from server
     // element['key'];
 	// element['value'];
 	
@@ -456,7 +456,7 @@ handlers.checkSaleReporter = function(args,context)
   // }
   // if(dictExp.length > 0)
   // {
-	 // dictExp.forEach(function(element){
+	 // dictExp.foreach(function(element){
 		 
     // element['key'];
 	// element['value'];
@@ -464,16 +464,12 @@ handlers.checkSaleReporter = function(args,context)
 	// })
   // }
   
-  //get exp from server
   
-  // var updateUserDataResult = server.UpdateUserData({
-        // PlayFabId: currentPlayerId,
-        // Data: {
-            // FoodExp_1: ,
-            // level_Exp: ,
-        // },
-      // Permission: "Public"
-    // });
+  var updateuserdataresult = server.updateuserdata({
+        playfabid: currentplayerid,
+        data: dictLevel,
+      permission: "public"
+    });
 }
 
 
