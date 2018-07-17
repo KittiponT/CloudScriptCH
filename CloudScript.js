@@ -426,7 +426,8 @@ handlers.checkSaleReporter = function(args,context)
     }
       
   log.debug("Total Money:" + totalMoney);
-  
+  log.debug("Total Money:" + totalMoney);
+  log.debug("Total Money:" + totalMoney);
     //do some check
   
   
@@ -465,11 +466,11 @@ handlers.checkSaleReporter = function(args,context)
   // }
   
   
-  var updateuserdataresult = server.updateuserdata({
-        playfabid: currentplayerid,
-        data: dictLevel,
-      permission: "public"
-    });
+  // var updateuserdataresult = server.updateuserdata({
+        // playfabid: currentplayerid,
+        // data: dictLevel,
+      // permission: "public"
+    // });
 }
 
 
