@@ -487,6 +487,7 @@ handlers.handlePlayStreamEventAndProfile = function (args, context) {
 
 handlers.LevelUp = function (args,context)
 {
+	
 	 var key =  ["Level"];
 
 	 var playerStats = server.GetPlayerStatistics({
@@ -501,20 +502,21 @@ handlers.LevelUp = function (args,context)
 		 {
 			curLevel = playerStats[i].Value;
 		 }
+	} 
+   
+	if(args.Level == curLevel)
+	{
+		curLevel += 1;
+		//var level = args.levelInput;
+		
+		var request = {
+			PlayFabId: currentPlayerId, Statistics: [{
+					StatisticName: "Level",
+					Value: curLevel
+				}]
+		};
+		var playerStatResult = server.UpdatePlayerStatistics(request);
 	}
-   curLevel += 1;
-	
-	
-	//var level = args.levelInput;
-	
-	var request = {
-        PlayFabId: currentPlayerId, Statistics: [{
-                StatisticName: "Level",
-                Value: curLevel
-            }]
-    };
-    var playerStatResult = server.UpdatePlayerStatistics(request);
-	
 }
 
 // Below are some examples of using Cloud Script in slightly more realistic scenarios
