@@ -426,7 +426,7 @@ handlers.checkSaleReporter = function(args,context)
 			// })
 		  //}
 		  log.debug("Count:" + i);
-	  }
+	  //}
     }
       
   log.debug("Total Money:" + totalMoney);
