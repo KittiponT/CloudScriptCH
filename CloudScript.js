@@ -373,7 +373,7 @@ handlers.checkSaleReporter = function(args,context)
    var saleList = args.SaleList;
    var totalMoney = 0;
    var dictLevel = []; // create an empty array
-   var dictExp = []
+   var dictExp = [];
 		
   
   for (var i = 0; i < saleList.length; i++)
@@ -384,28 +384,28 @@ handlers.checkSaleReporter = function(args,context)
 	   {
 		    totalMoney += parseInt(arr[2], 10);
 	   }
-	  // else if(arr[0] == 'c')
-	  // {
+	   else if(arr[0] == 'c')
+		{
 		  // //if(check for something)
 		  // //{
 			// ////////////////////////////////////////////////
-		// dictLevel.forEach(function(element){
-		 // //found old element 
-		 // if(element['key'] == arr[1])
-		 // {
-			 // element['value'] += arr[2];
-		 // }
-		 // else 
-		 // {
-			 // //found new element
-			 // dictLevel.push({
-			// key:   arr[1],
-			// value: arr[2]
-			// });
-		 // }
-		   // log.debug("dictLevel Key:" + arr[1] + "dictLevel Value" + arr[2]);
+		 // dictLevel.forEach(function(element){
+		  // //found old element 
+		  // if(element['key'] == arr[1])
+		  // {
+			  // element['value'] += arr[2];
+		  // }
+		  // else 
+		  // {
+			  // //found new element
+			  // dictLevel.push({
+			 // key:   arr[1],
+			 // value: arr[2]
+			 // });
+		  // }
+		    // log.debug("dictLevel Key:" + arr[1] + "dictLevel Value" + arr[2]);
 		 
-			// })
+		 // })
 			// ////////////////////////////////////////////////
 			
 		// dictExp.forEach(function(element){
@@ -425,8 +425,9 @@ handlers.checkSaleReporter = function(args,context)
 		  // log.debug("dictExp Key:" + arr[1] + "dictExp Value" + arr[3]);
 			// })
 		  //}
-		  log.debug("Count:" + i);
-	  //}
+		  log.debug("cookId:" + arr[1]+"lvlExp:" +arr[2]+"foodExp:" +arr[3]);
+		}
+		log.debug("Count:" + i);
     }
       
   log.debug("Total Money:" + totalMoney);
