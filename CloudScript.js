@@ -426,8 +426,8 @@ handlers.checkSaleReporter = function(args,context)
     }
       
   log.debug("Total Money:" + totalMoney);
-  log.debug("Total Money:" + totalMoney);
-  log.debug("Total Money:" + totalMoney);
+  log.debug("dictExp:" + dictExp);
+  log.debug("dictLevel:" + dictLevel);
     //do some check
   
   
