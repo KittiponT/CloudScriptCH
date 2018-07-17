@@ -378,53 +378,54 @@ handlers.checkSaleReporter = function(args,context)
   
   for (var i = 0; i < saleList.length; i++)
     {
-	  var arr = saleList[i].split("|");
+	  // var arr = saleList[i].split("|");
      
-      if(arr[0] == 's')
-	  {
-		   totalMoney += parseInt(arr[2], 10);
-	  }
-	  else if(arr[0] == 'c')
-	  {
-		  //if(check for something)
-		  //{
-			////////////////////////////////////////////////
-		dictLevel.forEach(function(element){
-		 //found old element 
-		 if(element['key'] == arr[1])
-		 {
-			 element['value'] += arr[2];
-		 }
-		 else 
-		 {
-			 //found new element
-			 dictLevel.push({
-			key:   arr[1],
-			value: arr[2]
-			});
-		 }
-		   log.debug("dictLevel Key:" + arr[1] + "dictLevel Value" + arr[2]);
+      // if(arr[0] == 's')
+	  // {
+		   // totalMoney += parseInt(arr[2], 10);
+	  // }
+	  // else if(arr[0] == 'c')
+	  // {
+		  // //if(check for something)
+		  // //{
+			// ////////////////////////////////////////////////
+		// dictLevel.forEach(function(element){
+		 // //found old element 
+		 // if(element['key'] == arr[1])
+		 // {
+			 // element['value'] += arr[2];
+		 // }
+		 // else 
+		 // {
+			 // //found new element
+			 // dictLevel.push({
+			// key:   arr[1],
+			// value: arr[2]
+			// });
+		 // }
+		   // log.debug("dictLevel Key:" + arr[1] + "dictLevel Value" + arr[2]);
 		 
-			})
-			////////////////////////////////////////////////
+			// })
+			// ////////////////////////////////////////////////
 			
-		dictExp.forEach(function(element){
-		 //found old element 
-		 if(element['key'] == arr[1])
-		 {
-			 element['value'] += arr[3];
-		 }
-		 else 
-		 {
-			 //found new element
-			 dictExp.push({
-			key:   arr[1],
-			value: arr[3]
-			});
-		 }
-		  log.debug("dictExp Key:" + arr[1] + "dictExp Value" + arr[3]);
-			})
+		// dictExp.forEach(function(element){
+		 // //found old element 
+		 // if(element['key'] == arr[1])
+		 // {
+			 // element['value'] += arr[3];
+		 // }
+		 // else 
+		 // {
+			 // //found new element
+			 // dictExp.push({
+			// key:   arr[1],
+			// value: arr[3]
+			// });
+		 // }
+		  // log.debug("dictExp Key:" + arr[1] + "dictExp Value" + arr[3]);
+			// })
 		  //}
+		  log.debug("Count:" + i);
 	  }
     }
       
