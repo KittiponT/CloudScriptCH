@@ -436,7 +436,23 @@ handlers.checkSaleReporter = function(args,context)
   
   
   
-  // summery total gainExp
+  // summery total gainExp(dictLevel,dictExp)
+
+  
+  var requestKey = {};
+  
+  //requestKey[foodID] = lvlExp;
+  
+  // get current exp from server 
+  var resultGetExpLevel = server.GetUserData({
+	  PlayFabId :currentPlayerId,
+	  Keys: "ExpLevel"
+  });
+
+  
+  log.debug("ExpLevel:" + resultGetExpLevel.Data["ExpLevel"].Value);
+  //plus current exp with  in coming exp
+  //update that exp
   
   
   // if(dictLevel.length > 0)
