@@ -464,8 +464,8 @@ handlers.checkSaleReporter = function(args,context)
 	  for(var i = 0; i < arrKeyLevel.length;i++)
 	  {
 		 
-		  var currentInt = Number(currentExpLevel);
-		  var loopNumber = Number(dictLevel[arrKeyLevel[i]].Value);
+		  var currentInt = parseInt(currentExpLevel);
+		  var loopNumber = parseInt(dictLevel[arrKeyLevel[i]].Value);
 		  log.debug("currentInt:" +currentInt);
 		  log.debug("loopNumber:" +loopNumber);
 		currentExpLevel = currentInt + loopNumber ;
