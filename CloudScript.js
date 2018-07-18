@@ -476,6 +476,14 @@ handlers.checkSaleReporter = function(args,context)
   }
   log.debug("total Exp Level:" +currentExpLevel);
   
+  var updateuserdataresult = server.UpdateUserData({
+        PlayFabId: currentPlayerId,
+        Data: {
+            ExpLevel: currentExpLevel
+        },
+      permission: "public"
+    });
+  
   
   ////////////////////// EXP COOK SECTION//////////////////////
   
