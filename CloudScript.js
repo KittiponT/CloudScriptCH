@@ -463,7 +463,9 @@ handlers.checkSaleReporter = function(args,context)
   {
 	  for(var i = 0; i < arrKeyLevel.length;i++)
 	  {
-		currentExpLevel += dictLevel[arrKeyLevel[i]].Value;
+		  var currentInt = Number(currentExpLevel);
+		  var loopNumber = Number(dictLevel[arrKeyLevel[i]].Value);
+		currentExpLevel = currentInt + loopNumber ;
 	  }
   }
   log.debug("total Exp Level:" +currentExpLevel);
