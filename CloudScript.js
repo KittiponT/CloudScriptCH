@@ -456,9 +456,10 @@ handlers.checkSaleReporter = function(args,context)
   });
   var currentExpLevel = resultGetExpLevel.Data["ExpLevel"].Value;
 
-  log.debug("dictLevel.length:" +dictLevel.length);
+ 
    var arrKeyLevel = Object.keys(dictLevel);
- if(dictLevel.length > 0)
+    log.debug("arrKeyLevel.length:" +arrKeyLevel.length);
+ if(arrKeyLevel.length > 0)
   {
 	  for(var i = 0; i < arrKeyLevel.length;i++)
 	  {
