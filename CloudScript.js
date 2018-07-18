@@ -394,11 +394,13 @@ handlers.checkSaleReporter = function(args,context)
 			
 			if(dictLevel.hasOwnProperty(foodID))
 			{
+				log.debug("already has this food id:" + foodID);
 				//found old element 
 				dictLevel[foodID] += lvlExp;
 			}
 			else
 			{
+				log.debug("dont has this food id:" + foodID);
 				 //found new element
 				dictLevel[foodID] = lvlExp;
 			}
