@@ -497,6 +497,12 @@ handlers.checkSaleReporter = function(args,context)
 		 var inputKey = "FoodExp_"+arrKeyExp[i];
 		  log.debug("inputKey:" +inputKey);
 			log.debug("arrKeyUserData.length:" +arrKeyUserData.length);
+			
+			for(var j =0; j < arrKeyUserData.length;j++)
+			{
+				log.debug("arrKeyUserData["+j+"]:" +arrKeyUserData[j]);
+			}
+			
 		 if(arrKeyUserData.hasOwnProperty(inputKey))
 		 {
 			 log.debug("found the exist data in server");
