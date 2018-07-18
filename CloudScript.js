@@ -439,15 +439,6 @@ handlers.checkSaleReporter = function(args,context)
   });   
   }
   
-  
-  
-  // summery total gainExp(dictLevel,dictExp)
-
-  
-  //var requestKey = {};
-  
-  //requestKey[foodID] = lvlExp;
-  
   ////////////////////// EXP LEVEL SECTION//////////////////////
   
   // get current exp from server 
@@ -487,21 +478,79 @@ handlers.checkSaleReporter = function(args,context)
   
   ////////////////////// EXP COOK SECTION//////////////////////
   
-  
-  var resultGeUserData = server.GetUserData({
+   var resultGetUserData = server.GetUserData({
 	  PlayFabId :currentPlayerId,
 	 
   });
+  var arrKeyUserData = Object.keys(resultGetUserData.Data);
+  
+  
+  var arrKeyExp = Object.keys(dictExp);
+   
+  if(arrKeyExp.length > 0)
+  {
+	  //loop though all incoming cooking log
+	  for(var i = 0; i < arrKeyExp.length;i++)
+	  {
+		 
+		 //check if there is any data of this food id in server side
+		 var inputKey = "FoodExp_"+arrKeyExp[i];
+		  log.debug("inputKey:" +inputKey);
+		 if(arrKeyUserData.hasOwnProperty(inputKey))
+		 {
+			 log.debug("parseInt(dictExp[arrKeyExp[i]]):" +parseInt(dictExp[arrKeyExp[i]]));
+			 log.debug("parseInt(resultGetUserData.Data[inputKey]):" +parseInt(resultGetUserData.Data[inputKey]));
+			 
+			//if there is add input value to current value(server side)
+			var totalValue = parseInt(dictExp[arrKeyExp[i]]) + parseInt(resultGetUserData.Data[inputKey]);
+			
+			log.debug("totalValue:" +totalValue);
+			
+			 var dataPayload = {};
+			dataPayload[inputKey] = totalValue;
+			
+			var updateuserdataresult2 = server.UpdateUserData({
+			PlayFabId: currentPlayerId,
+			"Data" : dataPayload,
+		    permission: "public"
+			});
+		 }
+		 else
+		 {
+			 //if ther is no data create a new colume
+			 log.debug("parseInt(dictExp[arrKeyExp[i]]):" +parseInt(dictExp[arrKeyExp[i]]));
+			 var totalValue = parseInt(dictExp[arrKeyExp[i]]);
+			 log.debug("totalValue:" +totalValue);
+			 
+			  var dataPayload = {};
+			dataPayload[inputKey] = totalValue;
+			 
+			 var updateuserdataresult2 = server.UpdateUserData({
+			PlayFabId: currentPlayerId,
+			"Data" : dataPayload,
+		  permission: "public"
+			});
+		 }
+		 
+		  //var currentInt = parseInt(currentExpLevel);
+		  //var loopNumber = parseInt(dictExp[arrKeyExp[i]]);
+	  }
+  }
+  
+  
+
+  
+  
+ 
   
   //put all key in the list
-  var arrKey = Object.keys(resultGeUserData.Data);
   
-  for (var i = 0; i < arrKey.length; i++)
-	{
-		 log.debug("Count:" +i);
-		 log.debug( "Key:" + arrKey[i]);
-		  log.debug( "Value:" + resultGeUserData.Data[arrKey[i]].Value);
-	} 
+  
+  
+  
+  var currentExpLevel = resultGetExpLevel.Data["ExpLevel"].Value;
+  
+  
   
   
   //plus current exp with  in coming exp
