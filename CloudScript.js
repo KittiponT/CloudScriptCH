@@ -458,13 +458,13 @@ handlers.checkSaleReporter = function(args,context)
   });
   
   //put all key in the list
-  var arr = Object.keys(resultGeUserData.Data);
+  var arrKey = Object.keys(resultGeUserData.Data);
   
-  for (var i = 0; i < resultGeUserData.Data.length; i++)
+  for (var i = 0; i < arrKey.length; i++)
 	{
 		 log.debug("Count:" +i);
-		 log.debug( "Key:" + arr[i]);
-		  log.debug( "Value:" + resultGeUserData.Data[arr[i]].Value);
+		 log.debug( "Key:" + arrKey[i]);
+		  log.debug( "Value:" + resultGeUserData.Data[arrKey[i]].Value);
 	} 
   
   
