@@ -439,18 +439,31 @@ handlers.checkSaleReporter = function(args,context)
   // summery total gainExp(dictLevel,dictExp)
 
   
-  var requestKey = {};
+  //var requestKey = {};
   
   //requestKey[foodID] = lvlExp;
+  
+  ////////////////////// EXP LEVEL SECTION//////////////////////
   
   // get current exp from server 
   var resultGetExpLevel = server.GetUserData({
 	  PlayFabId :currentPlayerId,
 	  Keys: "ExpLevel"
   });
+  var currentExpLevel = resultGetExpLevel.Data["ExpLevel"].Value;
 
+ if(dictLevel.length > 0)
+  {
+	 dictLevel.foreach(function(element){
+		 // get exp from server
+    currentExpLevel += element['value'];
+	})
+  }
+  log.debug("total Exp Level:" +currentExpLevel);
   
-  log.debug("ExpLevel:" + resultGetExpLevel.Data["ExpLevel"].Value);
+  
+  ////////////////////// EXP COOK SECTION//////////////////////
+  
   
   var resultGeUserData = server.GetUserData({
 	  PlayFabId :currentPlayerId,
@@ -472,15 +485,7 @@ handlers.checkSaleReporter = function(args,context)
   //update that exp
   
   
-  // if(dictLevel.length > 0)
-  // {
-	 // dictLevel.foreach(function(element){
-		 // // get exp from server
-    // element['key'];
-	// element['value'];
-	
-	// })
-  // }
+ 
   // if(dictExp.length > 0)
   // {
 	 // dictExp.foreach(function(element){
