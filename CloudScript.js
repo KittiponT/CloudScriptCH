@@ -403,6 +403,8 @@ handlers.checkSaleReporter = function(args,context)
 				log.debug("dont has this food id:" + foodID);
 				 //found new element
 				dictLevel[foodID] = lvlExp;
+				
+				log.debug("create foodID "+foodID+"with lvlExp of"+lvlExp +" result" +dictLevel[foodID]);
 			}
 			
 			if(dictExp.hasOwnProperty(foodID))
