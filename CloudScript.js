@@ -466,8 +466,12 @@ handlers.checkSaleReporter = function(args,context)
 		 
 		  var currentInt = parseInt(currentExpLevel);
 		  var loopNumber = parseInt(dictLevel[arrKeyLevel[i]].Value);
-		  log.debug("currentInt:" +currentInt);
+		  
+		  log.debug("arrKeyLevel[i]:" +arrKeyLevel[i]);
+		  log.debug("dictLevel[arrKeyLevel[i]]:" +dictLevel[arrKeyLevel[i]]);
+		  log.debug("dictLevel[arrKeyLevel[i]].Value:" +dictLevel[arrKeyLevel[i]].Value);
 		  log.debug("loopNumber:" +loopNumber);
+		  
 		currentExpLevel = currentInt + loopNumber ;
 	  }
   }
