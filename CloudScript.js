@@ -496,8 +496,10 @@ handlers.checkSaleReporter = function(args,context)
 		 //check if there is any data of this food id in server side
 		 var inputKey = "FoodExp_"+arrKeyExp[i];
 		  log.debug("inputKey:" +inputKey);
+			log.debug("arrKeyUserData.length:" +arrKeyUserData.length);
 		 if(arrKeyUserData.hasOwnProperty(inputKey))
 		 {
+			 log.debug("found the exist data in server");
 			 log.debug("parseInt(dictExp[arrKeyExp[i]]):" +parseInt(dictExp[arrKeyExp[i]]));
 			 log.debug("parseInt(resultGetUserData.Data[inputKey]):" +parseInt(resultGetUserData.Data[inputKey]));
 			 
@@ -517,6 +519,7 @@ handlers.checkSaleReporter = function(args,context)
 		 }
 		 else
 		 {
+			 log.debug("not found the data in server, create new colum");
 			 //if ther is no data create a new colume
 			 log.debug("parseInt(dictExp[arrKeyExp[i]]):" +parseInt(dictExp[arrKeyExp[i]]));
 			 var totalValue = parseInt(dictExp[arrKeyExp[i]]);
