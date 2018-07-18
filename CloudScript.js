@@ -397,13 +397,13 @@ handlers.checkSaleReporter = function(args,context)
 			{
 				log.debug("already has this food id:" + foodID);
 				//found old element 
-				dictLevel[foodID] += lvlExp;
+				dictLevel[foodID] =  parseInt(dictLevel[foodID]) + parseInt(lvlExp);
 			}
 			else
 			{
 				log.debug("dont has this food id:" + foodID);
 				 //found new element
-				dictLevel[foodID] = lvlExp;
+				dictLevel[foodID] = parseInt(lvlExp);
 				
 				log.debug("create foodID "+foodID+"with lvlExp of"+lvlExp +" result" +dictLevel[foodID]);
 			}
@@ -411,12 +411,12 @@ handlers.checkSaleReporter = function(args,context)
 			if(dictExp.hasOwnProperty(foodID))
 			{
 				//found old element 
-				dictExp[foodID] += foodExp;
+				dictExp[foodID] = parseInt(dictExp[foodID]) + parseInt(foodExp);
 			}
 			else
 			{
 				 //found new element
-				dictExp[foodID] = foodExp;
+				dictExp[foodID] = parseInt(foodExp);
 			}
 		
 		  log.debug("cookId:" + foodID+"lvlExp:" +lvlExp+"foodExp:" +foodExp);
@@ -469,7 +469,7 @@ handlers.checkSaleReporter = function(args,context)
 		  var loopNumber = parseInt(dictLevel[arrKeyLevel[i]]);
 		  
 		 
-		  log.debug("loopNumber:" +loopNumber);
+		  log.debug("loopNumber:" + loopNumber);
 		  
 		currentExpLevel = currentInt + loopNumber ;
 	  }
