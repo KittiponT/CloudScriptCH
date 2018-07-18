@@ -451,6 +451,23 @@ handlers.checkSaleReporter = function(args,context)
 
   
   log.debug("ExpLevel:" + resultGetExpLevel.Data["ExpLevel"].Value);
+  
+  var resultGeUserData = server.GetUserData({
+	  PlayFabId :currentPlayerId,
+	 
+  });
+  
+  //put all key in the list
+  var arr = Object.keys(resultGeUserData.Data);
+  
+  for (var i = 0; i < resultGeUserData.Data.length; i++)
+	{
+		 log.debug("Count:" +i);
+		 log.debug( "Key:" + arr[i]);
+		  log.debug( "Value:" + resultGeUserData.Data[arr[i]].Value);
+	} 
+  
+  
   //plus current exp with  in coming exp
   //update that exp
   
