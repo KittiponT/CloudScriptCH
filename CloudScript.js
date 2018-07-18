@@ -452,12 +452,14 @@ handlers.checkSaleReporter = function(args,context)
   });
   var currentExpLevel = resultGetExpLevel.Data["ExpLevel"].Value;
 
+  log.debug("dictLevel.length:" +dictLevel.length);
+   var arrKeyLevel = Object.keys(dictLevel);
  if(dictLevel.length > 0)
   {
-	 dictLevel.foreach(function(element){
-		 // get exp from server
-    currentExpLevel += element['value'];
-	})
+	  for(var i = 0; i < arrKeyLevel.length;i++)
+	  {
+		currentExpLevel += dictLevel[arrKeyLevel[i]].Value;
+	  }
   }
   log.debug("total Exp Level:" +currentExpLevel);
   
