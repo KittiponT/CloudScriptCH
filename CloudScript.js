@@ -386,13 +386,26 @@ handlers.checkSaleReporter = function(args,context)
 	   }
 	   else if(arr[0] == 'c')
 		{
-			
-			
 			var foodID = arr[1];
 			var foodExp = arr[2];
-			var lvlExp = arr[3];
 			
-			
+			if(dictExp.hasOwnProperty(foodID))
+			{
+				//found old element 
+				dictExp[foodID] = parseInt(dictExp[foodID]) + parseInt(foodExp);
+			}
+			else
+			{
+				 //found new element
+				dictExp[foodID] = parseInt(foodExp);
+			}
+		
+		  log.debug("cookId:" + foodID+"foodExp:" +foodExp);
+		}
+		else if(arr[0] == 'l')
+		{
+			var foodID = arr[1];
+			var lvlExp = arr[2];
 			if(dictLevel.hasOwnProperty(foodID))
 			{
 				log.debug("already has this food id:" + foodID);
@@ -407,23 +420,16 @@ handlers.checkSaleReporter = function(args,context)
 				
 				log.debug("create foodID "+foodID+"with lvlExp of"+lvlExp +" result" +dictLevel[foodID]);
 			}
-			
-			if(dictExp.hasOwnProperty(foodID))
-			{
-				//found old element 
-				dictExp[foodID] = parseInt(dictExp[foodID]) + parseInt(foodExp);
-			}
-			else
-			{
-				 //found new element
-				dictExp[foodID] = parseInt(foodExp);
-			}
-		
-		  log.debug("cookId:" + foodID+"lvlExp:" +lvlExp+"foodExp:" +foodExp);
+			log.debug("cookId:" + foodID+"lvlExp:" +lvlExp);
 		}
+		}
+
+			
 		log.debug("Count:" + i);
     }
       
+  ////////////////////// MONEY SECTION//////////////////////
+	  
   log.debug("Total Money:" + totalMoney);
 
     //do some check
