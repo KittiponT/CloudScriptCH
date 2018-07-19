@@ -497,15 +497,19 @@ handlers.checkSaleReporter = function(args,context)
 		 var inputKey = "FoodExp_"+arrKeyExp[i];
 		  log.debug("inputKey:" +inputKey);
 			log.debug("arrKeyUserData.length:" +arrKeyUserData.length);
-			
+			var isContain = false;
 			for(var j =0; j < arrKeyUserData.length;j++)
 			{
+				if(arrKeyUserData[j] == inputKey)
+				{
+					isContain = true;
+				}
 				log.debug("arrKeyUserData["+j+"]:" +arrKeyUserData[j]);
 			}
 			
-			log.debug("arrKeyUserData.hasOwnProperty(inputKey):"+arrKeyUserData.hasOwnProperty(inputKey));
+			log.debug("isContain:"+isContain);
 			
-		 if(arrKeyUserData.hasOwnProperty(inputKey))
+		 if(isContain)
 		 {
 			 log.debug("found the exist data in server");
 			 log.debug("parseInt(dictExp[arrKeyExp[i]]):" +parseInt(dictExp[arrKeyExp[i]]));
