@@ -503,6 +503,7 @@ handlers.checkSaleReporter = function(args,context)
 				if(arrKeyUserData[j] == inputKey)
 				{
 					isContain = true;
+					break;
 				}
 				log.debug("arrKeyUserData["+j+"]:" +arrKeyUserData[j]);
 			}
@@ -513,10 +514,10 @@ handlers.checkSaleReporter = function(args,context)
 		 {
 			 log.debug("found the exist data in server");
 			 log.debug("parseInt(dictExp[arrKeyExp[i]]):" +parseInt(dictExp[arrKeyExp[i]]));
-			 log.debug("parseInt(resultGetUserData.Data[inputKey]):" +parseInt(resultGetUserData.Data[inputKey]));
+			 log.debug("parseInt(resultGetUserData.Data[inputKey]):" +parseInt(resultGetUserData.Data[inputKey].Value));
 			 
 			//if there is add input value to current value(server side)
-			var totalValue = parseInt(dictExp[arrKeyExp[i]]) + parseInt(resultGetUserData.Data[inputKey]);
+			var totalValue = parseInt(dictExp[arrKeyExp[i]]) + parseInt(resultGetUserData.Data[inputKey].Value);
 			
 			log.debug("totalValue:" +totalValue);
 			
