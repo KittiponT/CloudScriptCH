@@ -503,6 +503,8 @@ handlers.checkSaleReporter = function(args,context)
 				log.debug("arrKeyUserData["+j+"]:" +arrKeyUserData[j]);
 			}
 			
+			log.debug("arrKeyUserData.hasOwnProperty(inputKey):"+arrKeyUserData.hasOwnProperty(inputKey));
+			
 		 if(arrKeyUserData.hasOwnProperty(inputKey))
 		 {
 			 log.debug("found the exist data in server");
