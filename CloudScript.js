@@ -422,7 +422,7 @@ handlers.checkSaleReporter = function(args,context)
 			}
 			log.debug("cookId:" + foodID+"lvlExp:" +lvlExp);
 		}
-		}
+		
 
 			
 		log.debug("Count:" + i);
