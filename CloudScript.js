@@ -374,17 +374,17 @@ handlers.checkSaleReporter = function(args,context)
    var totalMoney = 0;
    var dictLevel = {}; // create an empty array
    var dictExp = {};
-		
+   var dictSGPoint = {};
   
   for (var i = 0; i < saleList.length; i++)
     {
 	   var arr = saleList[i].split("|");
      
-       if(arr[0] == 's')
-	   {
+        if(arr[0] == 's')
+	    {
 		    totalMoney += parseInt(arr[2], 10);
-	   }
-	   else if(arr[0] == 'c')
+	    }
+	    else if(arr[0] == 'c')
 		{
 			var foodID = arr[1];
 			var foodExp = arr[2];
@@ -421,6 +421,25 @@ handlers.checkSaleReporter = function(args,context)
 				log.debug("create foodID "+foodID+"with lvlExp of"+lvlExp +" result" +dictLevel[foodID]);
 			}
 			log.debug("cookId:" + foodID+"lvlExp:" +lvlExp);
+		}
+		else if(arr[0] == 'sg')
+		{
+			var SG_ID = arr[1];
+			var foodID = arr[2];
+			var SPoint = arr[3];
+			if(dictSGPoint.hasOwnProperty(SG_ID))
+			{
+				log.debug("already has this sg id:" + SG_ID);
+				//found old element 
+				dictSGPoint[SG_ID] =  parseInt(dictSGPoint[SG_ID]) + parseInt(SPoint);
+			}
+			else
+			{
+				log.debug("dont has this sg id:" + SG_ID);
+				 //found new element
+				 dictSGPoint[SG_ID] = parseInt(SPoint);
+			}
+			log.debug("SG_ID:" + SG_ID+"SPoint:" +SPoint);
 		}
 		
 
@@ -553,49 +572,78 @@ handlers.checkSaleReporter = function(args,context)
 		  permission: "public"
 			});
 		 }
+	  }
+  }
+  
+  ////////////////////// SG SPoint SECTION//////////////////////
+  var arrKeySGPoint = Object.keys(dictSGPoint);
+   
+  if(arrKeySGPoint.length > 0)
+  {
+	  //loop though all incoming SgPoint log
+	  for(var i = 0; i < arrKeySGPoint.length;i++)
+	  {
 		 
-		  //var currentInt = parseInt(currentExpLevel);
-		  //var loopNumber = parseInt(dictExp[arrKeyExp[i]]);
+		 //check if there is any data of this SG id in server side
+		 var inputKey = "satifactSG_"+arrKeySGPoint[i];
+		  log.debug("inputKey:" +inputKey);
+			log.debug("arrKeyUserData.length:" +arrKeyUserData.length);
+			var isContain = false;
+			for(var j =0; j < arrKeyUserData.length;j++)
+			{
+				if(arrKeyUserData[j] == inputKey)
+				{
+					isContain = true;
+					break;
+				}
+				log.debug("arrKeyUserData["+j+"]:" +arrKeyUserData[j]);
+			}
+			
+			log.debug("isContain:"+isContain);
+			
+		 if(isContain)
+		 {
+			 log.debug("found the exist data in server");
+			 log.debug("parseInt(dictExp[arrKeySGPoint[i]]):" +parseInt(dictSGPoint[arrKeySGPoint[i]]));
+			 log.debug("parseInt(resultGetUserData.Data[inputKey]):" +parseInt(resultGetUserData.Data[inputKey].Value));
+			 
+			//if there is add input value to current value(server side)
+			var totalValue = parseInt(dictSGPoint[arrKeySGPoint[i]]) + parseInt(resultGetUserData.Data[inputKey].Value);
+			
+			log.debug("totalValue:" +totalValue);
+			
+			 var dataPayload = {};
+			dataPayload[inputKey] = totalValue;
+			
+			var updateuserdataresult2 = server.UpdateUserData({
+			PlayFabId: currentPlayerId,
+			"Data" : dataPayload,
+		    permission: "public"
+			});
+		 }
+		 else
+		 {
+			 log.debug("not found the data in server, create new colum");
+			 //if ther is no data create a new colume
+			 log.debug("parseInt(dictExp[arrKeyExp[i]]):" +parseInt(dictSGPoint[arrKeySGPoint[i]]));
+			 var totalValue = parseInt(dictSGPoint[arrKeySGPoint[i]]);
+			 log.debug("totalValue:" +totalValue);
+			 
+			  var dataPayload = {};
+			dataPayload[inputKey] = totalValue;
+			 
+			 var updateuserdataresult2 = server.UpdateUserData({
+			PlayFabId: currentPlayerId,
+			"Data" : dataPayload,
+		  permission: "public"
+			});
+		 }
 	  }
   }
   
   
-
   
   
- 
-  
-  //put all key in the list
-  
-  
-  
-  
-  var currentExpLevel = resultGetExpLevel.Data["ExpLevel"].Value;
-  
-  
-  
-  
-  //plus current exp with  in coming exp
-  //update that exp
-  
-  
- 
-  // if(dictExp.length > 0)
-  // {
-	 // dictExp.foreach(function(element){
-		 
-    // element['key'];
-	// element['value'];
-	
-	// })
-  // }
-  
-  
-  // var updateuserdataresult = server.updateuserdata({
-        // playfabid: currentplayerid,
-        // data: dictLevel,
-      // permission: "public"
-    // });
 }
 
 
@@ -624,6 +672,7 @@ handlers.generateStartingResources = function(args)
     var furLayout = "4,8,0,3,3,1|4,8,1,0,2,1|4,8,6,0,2,1|1,7,3,0,2,1|1,6,9,0,2,1|1,4,5,3,1,1|1,4,5,6,1,1|1,4,0,4,0,1|1,4,9,3,3,1|1,4,9,7,0,1|1,2,11,11,2,1|1,2,11,9,2,1|2,3,4,3,2,1|2,3,4,6,2,1|2,3,9,6,2,1|2,3,10,3,2,1";
     var sizeX = "12";
   	var sizeY = "12";
+	var expLevel = "0";
   
     var updateUserDataResult = server.UpdateUserData({
         PlayFabId: currentPlayerId,
@@ -632,7 +681,8 @@ handlers.generateStartingResources = function(args)
             RL_SizeY_1: sizeY,
             RL_Tiles_1: tileLayout,
             RL_Walls_1: wallLayout,
-            RL_Furnitures_1: furLayout
+            RL_Furnitures_1: furLayout,
+			ExpLevel: expLevel
         },
       Permission: "Public"
     });
