@@ -699,6 +699,19 @@ handlers.generateStartingResources = function(args)
 };
 //=========================================================================
 
+handlers.ClearInventory = function (args,context)
+{
+	var UserInventory =  server.GetUserInventory({
+		PlayFabId:currentPlayerId
+	});
+	
+	for (var i = 0; i < UserInventory.Inventory.length; i++)
+	{
+		 log.debug(UserInventory.Inventory[i].ItemId );
+	} 
+	
+}
+
 // This is a simple example of making a web request to an external HTTP API.
 handlers.makeHTTPRequest = function (args, context) {
     var headers = {
