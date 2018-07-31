@@ -707,7 +707,11 @@ handlers.ClearInventory = function (args,context)
 	
 	for (var i = 0; i < UserInventory.Inventory.length; i++)
 	{
-		 log.debug(UserInventory.Inventory[i].ItemId );
+		log.debug("delete:"+UserInventory.Inventory[i].ItemId );
+		 server.RevokeInventoryItem({
+			 PlayFabId:currentPlayerId,
+			 ItemInstanceId:UserInventory.Inventory[i].ItemInstanceId
+		 });
 	} 
 	
 }
